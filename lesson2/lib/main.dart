@@ -112,6 +112,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void _mapItem() {
     setState(() {
       resultList = listUser.map((e) => e.id).toString();
+      resultNew = demoList.map((e) => e.toLowerCase());
+      resultNew.toList();
+      resultNew.remove("value");
     });
   }
 

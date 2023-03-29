@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,8 +32,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final dio = Dio();
 
-  void _incrementCounter() async {}
+  void _incrementCounter() async {
+    var listFuture = <Future>[];
+    for (int i = 0; i < 10; i++) {
+      listFuture.add(test(i));
+    }
+    await Future.wait(listFuture);
+    print("Complete");
+  }
+
+  Future<void> test(int id) async {
+    Future.delayed(const Duration(seconds: 2), (){
+      print("Print:ID=$id");
+    });
+    print("Print:ID: Complete");
+  }
 
   @override
   Widget build(BuildContext context) {
